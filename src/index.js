@@ -25,7 +25,7 @@ function onFormSubmit(e){
   pixabayApi.onFetchPhotos().then((photos) => 
     {
       const fetchedPhotosData = photos.data
-
+      gallery.innerHTML = ''
       if (fetchedPhotosData.total === 0) {
         Notify.info('Sorry, there are no images matching your search query. Please try again.')
         return
@@ -91,7 +91,8 @@ function renderGallery(array){
   }).join('')
   console.log(galMarkup)
   
-  gallery.innerHTML = galMarkup
+  gallery.insertAdjacentHTML('beforeend', galMarkup)
+
   new SimpleLightbox('.photo-link');
   }
   
